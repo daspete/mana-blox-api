@@ -24,11 +24,17 @@ Route.group(() => {
     Route.post('auth/login', 'AuthController.login')
 
     Route.resource('users', 'UsersController').middleware(new Map([
-        [ ['store', 'update', 'delete'], ['auth', 'acl:users_edit'] ]
-    ]))//['auth')//.middleware('acl:users_view')
+        [['store'], ['auth', 'acl:users_create']],
+        [['update', 'delete'], ['auth', 'acl:users_edit']],
+        [['destroy'], ['auth', 'acl:users_delete']]
+    ]))
 
-})//.middleware('auth')
-    //.middleware('roles')
-    .prefix('api/v1')
+    Route.resource('permissions', 'PermissionController').middleware('acl:acl_view')
+    Route.resource('roles', 'RoleController').middleware('acl:acl_view')
+    Route.resource('permissions-roles', 'PermissionsRoleController').middleware('acl:acl_view')
+    Route.resource('users-roles', 'RolesUserController').middleware('acl:acl_view')
+
+
+}).prefix('api/v1')
 
 Route.any('*', 'NuxtController.render')

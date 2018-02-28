@@ -72,8 +72,6 @@ class User extends Model {
     async can(permission){
         if(permission == null) return false;
 
-        console.log(permission);
-
         if(Array.isArray(permission)){
             for(let i = 0; i < permission.length; i++){
                 let can = await this.checkPermission(permission[i])
@@ -84,7 +82,6 @@ class User extends Model {
         }
 
         return true;
-        //return (permission != null) && this.checkPermission(permission)
     }
 
     /**

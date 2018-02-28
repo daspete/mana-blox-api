@@ -34,14 +34,24 @@ class AclSeeder {
                 permission_description: 'ACL View'
             },
             {
-                permission_title: 'users view',
+                permission_title: 'users:view',
                 permission_slug: 'users_view',
                 permission_description: 'show users'
             },
             {
-                permission_title: 'users edit',
+                permission_title: 'users:create',
+                permission_slug: 'users_create',
+                permission_description: 'create users'
+            },
+            {
+                permission_title: 'users:edit',
                 permission_slug: 'users_edit',
                 permission_description: 'edit users'
+            },
+            {
+                permission_title: 'users:delete',
+                permission_slug: 'users_delete',
+                permission_description: 'delete users'
             }
         ])
 
@@ -56,6 +66,14 @@ class AclSeeder {
             },
             {
                 permission_id: 3,
+                role_id: 1
+            },
+            {
+                permission_id: 4,
+                role_id: 1
+            },
+            {
+                permission_id: 5,
                 role_id: 1
             },
         ])
