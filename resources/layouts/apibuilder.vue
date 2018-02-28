@@ -1,7 +1,7 @@
 <template>
     <v-app>
         <admin
-            title="manablox-apibuilder"
+            title="manablox-api-builder"
             :full-width-topbar="true"
             :sidebar-open="true"
             :sidebar-mini="false"
@@ -42,7 +42,7 @@ export default {
                 {
                     type: 'link',
                     label: 'Dashboard',
-                    url: '/apibuilder',
+                    url: '/api-builder',
                     icon: 'home'
                 },
                
@@ -56,19 +56,19 @@ export default {
                 {
                     type: 'link',
                     label: 'Users',
-                    url: '/apibuilder/users',
+                    url: '/api-builder/users',
                     icon: 'home'
                 },
                 {
                     type: 'link',
                     label: 'Roles',
-                    url: '/apibuilder/roles',
+                    url: '/api-builder/roles',
                     icon: 'home'
                 },
                 {
                     type: 'link',
                     label: 'Permissions',
-                    url: '/apibuilder/permissions',
+                    url: '/api-builder/permissions',
                     icon: 'home'
                 },
                 
@@ -82,7 +82,7 @@ export default {
                 {
                     type: 'link',
                     label: 'Models',
-                    url: '/apibuilder/models',
+                    url: '/api-builder/models',
                     icon: 'home'
                 },
                 

@@ -16,7 +16,13 @@
 const Route = use('Route')
 
 Route.get('/', ({ request }) => {
-  return { greeting: 'Hello world in JSON' }
+    return { greeting: 'Hello world in JSON' }
 })
+
+Route.group(() => {
+
+    Route.resource('users', 'UsersController').middleware('acl:users_view')
+
+}).middleware('auth').middleware('roles').prefix('api/v1')
 
 Route.any('*', 'NuxtController.render')
