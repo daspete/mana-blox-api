@@ -21,8 +21,10 @@ Route.get('/', ({ request }) => {
 
 Route.group(() => {
 
-    Route.resource('users', 'UsersController').middleware('acl:users_view')
+    Route.resource('users', 'UsersController')//.middleware('acl:users_view')
 
-}).middleware('auth').middleware('roles').prefix('api/v1')
+})//.middleware('auth')
+    //.middleware('roles')
+    .prefix('api/v1')
 
 Route.any('*', 'NuxtController.render')
