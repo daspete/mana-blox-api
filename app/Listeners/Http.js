@@ -27,7 +27,9 @@ Http.handleError = function* (error, request, response) {
         const type = request.accepts('json', 'html')
         const formatMethod = type === 'json' ? 'toJSON' : 'toHTML'
         const formattedErrors = yield youch[formatMethod]()
+        
         response.status(status).send(formattedErrors)
+
         return
     }
 
@@ -35,6 +37,7 @@ Http.handleError = function* (error, request, response) {
      * PRODUCTION REPORTER
      */
     console.error(error.stack)
+    
     yield response.status(status).send({ error })
 }
 
@@ -44,6 +47,7 @@ Http.handleError = function* (error, request, response) {
  */
 Http.onStart = function () {
     const View = use('View')
+ 
     View.global('hasRole', function (user_roles, role) {
         return ((user_roles) && (user_roles.indexOf(role) >= 0))
     })

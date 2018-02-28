@@ -15,17 +15,17 @@ const Factory = use('Factory')
 const Role = use('App/Models/Acl/Role')
 const Permission = use('App/Models/Acl/Permission')
 const PermissionRole = use('App/Models/Acl/PermissionRole')
-// const RoleUser = use('App/Models/RoleUser')
+const RoleUser = use('App/Models/Acl/RoleUser')
 
 
 class AclSeeder {
-    async run() {
-        console.log('bla');
-        //const users = await Factory.model('App/Models/User').create()
+    async run(){
+        const users = await Factory.model('App/Models/User').create()
+
         const role = new Role()
         role.role_title = 'Administrator'
-        role.role_slug = 'super_admin'
-        await role.save() // SQL Insert
+        role.role_slug = 'superadmin'
+        await role.save()
 
         const permission = await Permission.createMany([
             {
@@ -36,7 +36,12 @@ class AclSeeder {
             {
                 permission_title: 'users view',
                 permission_slug: 'users_view',
-                permission_description: 'shows users'
+                permission_description: 'show users'
+            },
+            {
+                permission_title: 'users edit',
+                permission_slug: 'users_edit',
+                permission_description: 'edit users'
             }
         ])
 
@@ -49,7 +54,15 @@ class AclSeeder {
                 permission_id: 2,
                 role_id: 1
             },
+            {
+                permission_id: 3,
+                role_id: 1
+            },
         ])
+        const role_user = new RoleUser()
+        role_user.role_id = 1
+        role_user.user_id = 1
+        await role_user.save()
     }
 }
 

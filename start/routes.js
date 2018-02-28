@@ -21,7 +21,11 @@ Route.get('/', ({ request }) => {
 
 Route.group(() => {
 
-    Route.resource('users', 'UsersController')//.middleware('acl:users_view')
+    Route.post('auth/login', 'AuthController.login')
+
+    Route.resource('users', 'UsersController').middleware(new Map([
+        [ ['store', 'update', 'delete'], ['auth', 'acl:users_edit'] ]
+    ]))//['auth')//.middleware('acl:users_view')
 
 })//.middleware('auth')
     //.middleware('roles')

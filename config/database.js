@@ -72,9 +72,9 @@ module.exports = {
     connection: {
       host: Env.get('DB_HOST', 'localhost'),
       port: Env.get('DB_PORT', ''),
-      user: Env.get('DB_USER', 'root'),
-      password: Env.get('DB_PASSWORD', ''),
-      database: Env.get('DB_DATABASE', 'adonis')
+      user: Env.get('DB_USER', 'manablox'),
+      password: Env.get('DB_PASSWORD', 'manablox'),
+      database: Env.get('DB_DATABASE', 'manablox')
     },
     debug: Env.get('DB_DEBUG', false)
   }

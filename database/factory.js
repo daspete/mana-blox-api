@@ -11,7 +11,16 @@
 |
 */
 
-// const Factory = use('Factory')
+const Factory = use('Factory')
+
+Factory.blueprint('App/Models/User', (faker) => {
+    return {
+        username: 'admin',
+        email: 'admin@localhost',
+        password: '123456'
+    }
+})
+
 
 /**
   Factory.blueprint('App/Models/User', (faker) => {
