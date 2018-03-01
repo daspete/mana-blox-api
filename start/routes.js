@@ -22,6 +22,8 @@ Route.get('/', ({ request }) => {
 Route.group(() => {
 
     Route.post('auth/login', 'AuthController.login')
+    Route.get('auth/logout', 'AuthController.logout').middleware('auth')
+    Route.get('auth/me', 'AuthController.me').middleware('auth')
 
     Route.resource('users', 'UsersController').middleware(new Map([
         [['index'], ['auth', 'acl:users_view']],

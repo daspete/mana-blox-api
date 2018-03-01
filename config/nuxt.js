@@ -70,6 +70,7 @@ module.exports = {
     },
 
     modules: [
+        '@nuxtjs/font-awesome',
         '@nuxtjs/axios',
         '@nuxtjs/auth',
         'manablox-ui-toolkit'
@@ -85,6 +86,10 @@ module.exports = {
                 url: '/api/v1/auth/login',
                 method: 'post',
                 propertyName: 'token'
+            },
+            logout: {
+                url: '/api/v1/auth/logout',
+                method: 'get'
             },
             user: {
                 url: '/api/v1/auth/me',

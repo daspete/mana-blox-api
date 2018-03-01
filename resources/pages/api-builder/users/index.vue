@@ -1,6 +1,11 @@
 <template>
     <div>
         <panel title="User">
+            <template slot="header">
+                <v-btn icon nuxt to="users/create">
+                    <v-icon color="white">fa-user-plus</v-icon>
+                </v-btn>
+            </template>
             <template slot="content">
                 <v-alert
                     type="error"
@@ -13,7 +18,6 @@
 
                 <v-data-table v-if="items"
                     v-model="selected"
-                    :headers="headers"
                     :items="items"
                     item-key="id"
                 >
@@ -102,21 +106,12 @@ export default {
             errors.push(e.response.data.error.message);
         }
 
-        console.log(errors);
-
-
         return {
             errors: errors,
             showDeleteConfirm: false,
             isDeleting: false,
             current: null,
             selected: [],
-            headers: [
-                { text: 'ID', value: 'id' },
-                { text: 'Username', value: 'username' },
-                { text: 'Email', value: 'email' },
-
-            ],
             items: users
         }
     },
@@ -141,7 +136,7 @@ export default {
             this.isDeleting = true;
 
             try {
-                await this.$axios.$delete(this.current);
+                await this.$axios.$delete(`/api/v1/users/${ this.current.id }`);
             }catch(e){
                 console.log(e);
             }

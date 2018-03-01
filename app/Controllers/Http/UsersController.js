@@ -79,14 +79,17 @@ class UsersController {
     }
 
     async update({ request, response }){
-        const id = request.param('id')
-        const user = await User.find(id);
+        const id = request.params.id
+        const user = await User.find(id)
 
         if(user){
-            user.username = request.input("username");
-            user.email = request.input("email");
+            //user.username = request.input("username");
+            user.email = request.input('email');
+            user.gender = request.input('gender');
+            user.first_name = request.input('first_name');
+            user.last_name = request.input('last_name');
 
-            if(request.input("password")){
+            if(request.input('password')){
                 user.password = await Hash.make(request.input('password'));
             }
 
@@ -130,8 +133,9 @@ class UsersController {
     }
 
     async destroy({ request, response }){
-        const id = request.param('id')
-        const user = await User.find(id);
+        const id = request.params.id
+        const user = await User.find(id)
+
         if(user){
             try{
                 await user.delete()
@@ -143,7 +147,7 @@ class UsersController {
             response.json({ success: false, message: 'Unable to find user to delete' });
         }
 
-        response.send(request.params());
+        response.send(request.params);
     }
 }
 
