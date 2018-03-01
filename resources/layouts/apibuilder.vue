@@ -10,31 +10,32 @@
         >
             <template slot="topbar-content">
                 TOP
-            </template>    
+            </template>
 
             <template slot="navigation-content">
                 <sidenav :items="sidenav" v-on:link-click="OnLinkClick"/>
             </template>
-            
+
             <template slot="quickedit-content">
                 QUICKNAV
             </template>
-            
+
             <template slot="footer-content">
                 FOOTER
             </template>
-            
+
             <template slot="content">
                 <nuxt/>
             </template>
         </admin>
     </v-app>
-    
+
 </template>
 
 <script>
 
 export default {
+    middleware: 'auth',
 
     data(){
         return {
@@ -45,7 +46,7 @@ export default {
                     url: '/api-builder',
                     icon: 'home'
                 },
-               
+
                 {
                     type: 'sectionlabel',
                     label: 'Usermanagement'
@@ -71,10 +72,10 @@ export default {
                     url: '/api-builder/permissions',
                     icon: 'home'
                 },
-                
+
                 {
                     type: 'sectionlabel',
-                    label: 'Datenobjekte'
+                    label: 'Dataobjects'
                 },
                 {
                     type: 'divider'
@@ -85,7 +86,7 @@ export default {
                     url: '/api-builder/models',
                     icon: 'home'
                 },
-                
+
             ]
         }
     },

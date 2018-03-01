@@ -70,12 +70,49 @@ module.exports = {
     },
 
     modules: [
+        '@nuxtjs/axios',
+        '@nuxtjs/auth',
         'manablox-ui-toolkit'
     ],
 
     plugins: [
 
     ],
+
+    auth: {
+        endpoints: {
+            login: {
+                url: '/api/v1/auth/login',
+                method: 'post',
+                propertyName: 'token'
+            },
+            user: {
+                url: '/api/v1/auth/me',
+                method: 'get',
+                propertyName: 'user'
+            }
+        },
+
+        token: {
+            type: 'Bearer',
+            name: 'token'
+        },
+
+        cookie: {
+            name: 'token',
+            options: {
+                path: '/'
+            }
+        },
+
+        fetchUserOnLogin: false,
+
+        redirect: {
+            login: '/api-builder/login',
+            home: '/api-builder'
+        }
+
+    }
 
 
 };

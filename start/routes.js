@@ -24,6 +24,8 @@ Route.group(() => {
     Route.post('auth/login', 'AuthController.login')
 
     Route.resource('users', 'UsersController').middleware(new Map([
+        [['index'], ['auth', 'acl:users_view']],
+        [['show'], ['auth', 'acl:users_view']],
         [['store'], ['auth', 'acl:users_create']],
         [['update', 'delete'], ['auth', 'acl:users_edit']],
         [['destroy'], ['auth', 'acl:users_delete']]

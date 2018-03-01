@@ -8,7 +8,7 @@ class UsersController {
     async index({ request, response }){
         const users = await User.all();
 
-        await response.send(users); 
+        await response.send(users);
     }
 
     async create({ request, response }){
@@ -25,12 +25,12 @@ class UsersController {
         var userData = request.all();
 
         const validation = await Validator.validate(userData, User.rules)
-        
+
         if(validation.fails()){
             await response.status(401).send({ error: validation.messages()[0] })
         }else{
             await user.save();
-         
+
             var message = {
                 title: 'Success',
                 text: 'User created successfully',
@@ -42,14 +42,28 @@ class UsersController {
     }
 
     async show({ request, response }){
+        const id = request.params.id
+        const user = await User.find(id)
 
+        if (user) {
+            await response.send(user)
+        } else {
+            var message = {
+                title: 'Atention!',
+                text: 'Unable to find user to edit',
+                type: 'warning'
+            }
+
+            await response.status(201).send({ message });
+        }
     }
 
     async edit({ request, response }){
-        const id = request.param("id")
-        const user = await User.find(id);
+        const id = request.params.id
+        const user = await User.find(id)
+
         if(user){
-            await response.sendView('users.edit', {
+            await response.send({
                 user: user,
             })
         }else{
@@ -61,7 +75,7 @@ class UsersController {
             //await request.with({ message: message }).flash()
             await response.status(201).send({ message });
             //response.redirect('/users')
-        }    
+        }
     }
 
     async update({ request, response }){
@@ -83,12 +97,12 @@ class UsersController {
 
             var userData = request.all();
             const validation = await Validator.validate(userData, rules)
-            
+
             if(validation.fails()){
                 //await request.withOut('password').andWith({ error_message: validation.messages()[0] }).flash()
-                
+
                 await response.status(500).send({ error_message: validation.messages()[0] })
-                
+
                 //response.redirect('back')
             }else{
                 await user.save();
