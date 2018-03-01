@@ -17,3 +17,4 @@ database/development.sqlite
 package-lock.json
 yarn.lock
 compiled
+.nuxt
