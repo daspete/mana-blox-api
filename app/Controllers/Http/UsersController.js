@@ -46,11 +46,13 @@ class UsersController {
         const id = request.params.id
         const user = await User.find(id)
 
-        const userRoles = await user.roles().fetch();
 
-        user.roles = userRoles;
 
         if (user) {
+            const userRoles = await user.roles().fetch();
+
+            user.roles = userRoles;
+
             await response.send(user)
         } else {
             var message = {
@@ -100,17 +102,6 @@ class UsersController {
                 user.password = await Hash.make(request.input('password'));
             }
 
-            await RoleUser
-                .query()
-                .where('user_id', user.id)
-                .delete()
-
-            for(let x = 0; x < userRoles.length; x++){
-                const role_user = new RoleUser()
-                role_user.role_id = userRoles[x].id
-                role_user.user_id = user.id
-                await role_user.save()
-            }
 
             var rules = {
                 username: `required|unique:users,username,id,${user.id}`,
@@ -128,6 +119,19 @@ class UsersController {
                 //response.redirect('back')
             }else{
                 await user.save();
+
+                await RoleUser
+                    .query()
+                    .where('user_id', user.id)
+                    .delete()
+
+                for (let x = 0; x < userRoles.length; x++) {
+                    const role_user = new RoleUser()
+                    role_user.role_id = userRoles[x].id
+                    role_user.user_id = user.id
+                    await role_user.save()
+                }
+
                 var message = {
                     title: 'Success',
                     text: 'User updated successfully',

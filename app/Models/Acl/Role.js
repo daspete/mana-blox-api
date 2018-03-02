@@ -39,7 +39,7 @@ class Role extends Model {
     * @return Object
     */
     permissions() {
-        return this.belongsToMany('App/Models/Permission')
+        return this.belongsToMany('App/Models/Acl/Permission')
     }
 
 }

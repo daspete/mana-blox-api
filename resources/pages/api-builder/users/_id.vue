@@ -73,8 +73,7 @@
                                             v-model="user.roles"
                                             item-text="role_title"
                                             :value-comparator="(a, b) => {return a.id == b.id }"
-
-                                    ></v-select>
+                                        ></v-select>
                                     </v-flex>
                                 </v-layout>
                             </v-container>

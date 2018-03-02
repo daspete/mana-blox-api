@@ -2,8 +2,8 @@
     <div>
         <panel title="User">
             <template slot="header">
-                <v-btn icon nuxt to="users/create">
-                    <v-icon color="white">fa-user-plus</v-icon>
+                <v-btn icon nuxt to="roles/create">
+                    <v-icon color="white">fa-plus-circle</v-icon>
                 </v-btn>
             </template>
             <template slot="content">
