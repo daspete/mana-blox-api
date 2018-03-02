@@ -36,6 +36,7 @@
                             <th class="text-xs-left" width="50">ID</th>
                             <th class="text-xs-left">Title</th>
                             <th class="text-xs-left">Slug</th>
+                            <th class="text-xs-left">Description</th>
                             <th class="text-xs-right" width="140">Actions</th>
                         </tr>
                     </template>
@@ -53,6 +54,7 @@
                             <td class="text-xs-left">{{ props.item.id }}</td>
                             <td class="text-xs-left">{{ props.item.permission_title }}</td>
                             <td class="text-xs-left">{{ props.item.permission_slug }}</td>
+                            <td class="text-xs-left">{{ props.item.permission_description }}</td>
                             <td class="text-xs-right">
                                 <v-btn icon small outline color="teal" v-on:click.prevent="EditItem(props.item)">
                                     <v-icon small>edit</v-icon>

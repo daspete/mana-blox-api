@@ -25,7 +25,7 @@ class Permission extends Model {
     * @return Object
     */
     roles() {
-        return this.belongsToMany('App/Models/Role')
+        return this.belongsToMany('App/Models/Acl/Role')
     }
 
 }
