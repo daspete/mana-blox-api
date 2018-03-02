@@ -64,19 +64,19 @@ export default {
                     type: 'link',
                     label: 'Users',
                     url: '/api-builder/users',
-                    icon: 'home'
+                    icon: 'fa-user'
                 },
                 {
                     type: 'link',
                     label: 'Roles',
                     url: '/api-builder/roles',
-                    icon: 'home'
+                    icon: 'fa-lock'
                 },
                 {
                     type: 'link',
                     label: 'Permissions',
                     url: '/api-builder/permissions',
-                    icon: 'home'
+                    icon: 'fa-shield'
                 },
 
                 {

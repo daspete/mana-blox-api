@@ -1,6 +1,6 @@
 <template>
     <div>
-        <panel title="User">
+        <panel title="Roles">
             <template slot="header">
                 <v-btn icon nuxt to="roles/create">
                     <v-icon color="white">fa-plus-circle</v-icon>

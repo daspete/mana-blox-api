@@ -38,8 +38,8 @@ class PermissionController {
     }
 
     async destroy({ request, response }){
-        const id = request.param('id')
-        const permission = await Permission.find(id);
+        const id = request.params.id
+        const permission = await Permission.find(id)
         if (permission) {
             try {
                 await permission.delete()

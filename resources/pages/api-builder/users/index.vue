@@ -1,6 +1,6 @@
 <template>
     <div>
-        <panel title="User">
+        <panel title="Users">
             <template slot="header">
                 <v-btn icon nuxt to="users/create">
                     <v-icon color="white">fa-user-plus</v-icon>

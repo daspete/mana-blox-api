@@ -28,7 +28,6 @@
                                 ></v-text-field>
                             </v-flex>
 
-
                             <v-flex xs12>
                                 <v-select dark
                                     multiple
