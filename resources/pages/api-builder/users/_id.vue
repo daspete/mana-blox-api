@@ -66,14 +66,14 @@
                                     </v-flex>
 
                                     <v-flex xs12>
-                                        <v-select
+                                        <v-select dark
+                                            multiple
                                             label="User role"
-                                            :items="[
-                                                { text: 'bla' },
-                                                { text: 'blubb' }
-                                            ]"
+                                            :items="roles"
                                             v-model="user.roles"
-                                            item-value="text"
+                                            item-text="role_title"
+                                            :value-comparator="(a, b) => {return a.id == b.id }"
+
                                     ></v-select>
                                     </v-flex>
                                 </v-layout>
@@ -156,10 +156,26 @@ export default {
     layout: 'apibuilder',
 
     async asyncData({ app, params }){
-        let user = await app.$axios.$get(`/api/v1/users/${ params.id }`);
+        let user = null;
+        let roles = null;
+
+        try{
+            user = await app.$axios.$get(`/api/v1/users/${ params.id }`);
+        }catch(e){
+            console.log(e);
+        }
+
+        try {
+            roles = await app.$axios.$get('/api/v1/roles');
+            roles = roles.roles;
+        }catch(e){
+            console.log(e);
+        }
+
 
         return {
             user,
+            roles,
             isSubmitting: false,
             showPassword: false,
             showPasswordConfirm: false,

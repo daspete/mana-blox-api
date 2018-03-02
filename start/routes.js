@@ -33,10 +33,10 @@ Route.group(() => {
         [['destroy'], ['auth', 'acl:users_delete']]
     ]))
 
-    Route.resource('permissions', 'PermissionController').middleware('acl:acl_view')
-    Route.resource('roles', 'RoleController').middleware('acl:acl_view')
-    Route.resource('permissions-roles', 'PermissionsRoleController').middleware('acl:acl_view')
-    Route.resource('users-roles', 'RolesUserController').middleware('acl:acl_view')
+    Route.resource('permissions', 'PermissionController').middleware(['auth', 'acl:acl_view'])
+    Route.resource('roles', 'RoleController').middleware(['auth', 'acl:acl_view'])
+    Route.resource('permissions-roles', 'PermissionsRoleController').middleware(['auth', 'acl:acl_view'])
+    Route.resource('users-roles', 'RolesUserController').middleware(['auth', 'acl:acl_view'])
 
 
 }).prefix('api/v1')

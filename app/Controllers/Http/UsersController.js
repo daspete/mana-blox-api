@@ -1,6 +1,7 @@
 'use strict'
 
 const User = use('App/Models/User')
+const RoleUser = use('App/Models/Acl/RoleUser')
 const Hash = use('Hash')
 const Validator = use('Validator')
 
@@ -45,6 +46,10 @@ class UsersController {
         const id = request.params.id
         const user = await User.find(id)
 
+        const userRoles = await user.roles().fetch();
+
+        user.roles = userRoles;
+
         if (user) {
             await response.send(user)
         } else {
@@ -80,10 +85,12 @@ class UsersController {
 
     async update({ request, response }){
         const id = request.params.id
+        const userRoles = request.input('roles');
+
         const user = await User.find(id)
 
         if(user){
-            //user.username = request.input("username");
+            user.username = request.input("username");
             user.email = request.input('email');
             user.gender = request.input('gender');
             user.first_name = request.input('first_name');
@@ -91,6 +98,18 @@ class UsersController {
 
             if(request.input('password')){
                 user.password = await Hash.make(request.input('password'));
+            }
+
+            await RoleUser
+                .query()
+                .where('user_id', user.id)
+                .delete()
+
+            for(let x = 0; x < userRoles.length; x++){
+                const role_user = new RoleUser()
+                role_user.role_id = userRoles[x].id
+                role_user.user_id = user.id
+                await role_user.save()
             }
 
             var rules = {
