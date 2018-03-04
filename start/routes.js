@@ -38,6 +38,8 @@ Route.group(() => {
     Route.resource('permissions-roles', 'PermissionsRoleController').middleware(['auth', 'acl:acl_view'])
     Route.resource('users-roles', 'RolesUserController').middleware(['auth', 'acl:acl_view'])
 
+    Route.resource('models', 'DataModelController').middleware(['auth'])
+
 
 }).prefix('api/v1')
 
